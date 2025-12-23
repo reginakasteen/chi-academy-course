@@ -96,7 +96,7 @@ console.log('\nOld array: ', array_42);
 
 //replace the fifth element:
 let extra_42 = array_42.splice(5, 1, 'answer');
-console.log('\nanswer to the ultimate question of life, the universe, and everything: ', extra_42);
+console.log('\nAnswer to the ultimate question of life, the universe, and everything: ', extra_42);
 console.log('\nNew array: ', array_42);
 
 //find element
@@ -120,7 +120,7 @@ console.log('\nKeys and values:');
 console.log(Object.keys(sofa));
 console.log(Object.values(sofa));
 
-console.log('\nTry to find width and price properties:');
+console.log('\nCheck if there are width and price properties:');
 console.log('width: ', Object.hasOwn(sofa, "width"));
 console.log('price: ', Object.hasOwn(sofa, "price"));
 
