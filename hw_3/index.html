@@ -1,16 +1,38 @@
 <html>
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="./styles/style.css">
+
     <title>Homework 3</title>
 </head>
 
 <body>
-    <button id="display-btn">Display character list</button>
-    <div id="app"></div>
-    <button id="prev">Prev</button>
-    <span id="page">1</span>
-    <button id="next">Next</button>
+    
+    <div class="space"></div>
+
+    <div id="intro-block" class="text-center pt-5">
+        <h1 class="title fade-in-up">Rick and Morty</h1>
+        <h2 class="h2-title fade-in-up">Character App</h2>
+        <div class="flex justify-center items-center mt-5 fade-in-up">
+            <img src="./img/portal.png" class="w-40 p-5 portal-animate">
+            <button id="display-btn" class="p-2 m-5">
+                <i class="fa-solid fa-arrow-left-long pe-2"></i>Let's go, in and out
+            </button>
+        </div>
+
+    </div>
+
+
+    <div id="app" class="py-2 px-5"></div>
+
+    <div id="pagination">
+        <button id="prev">Previous</button>
+        <span id="page">1</span>
+        <button id="next">Next</button>
+    </div>
+
 </body>
 
 <script src="script.js"></script>
