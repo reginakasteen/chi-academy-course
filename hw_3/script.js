@@ -61,13 +61,13 @@ class TransportFactory {
 }
 
 
-// const transportCar = TransportFactory.create('car');
-// transportCar.ride();
-// transportCar.stop();
-// console.log('\n');
-// const transportTrain = TransportFactory.create('train');
-// transportTrain.ride();
-// transportTrain.stop();
+const transportCar = TransportFactory.create('car');
+transportCar.ride();
+transportCar.stop();
+console.log('\n');
+const transportTrain = TransportFactory.create('train');
+transportTrain.ride();
+transportTrain.stop();
 //const transportUnknown = TransportFactory.create('kick scooter');
 
 
