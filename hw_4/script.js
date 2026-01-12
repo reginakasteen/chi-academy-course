@@ -121,12 +121,6 @@ function getCharacter(url) {
                     : item.status === 'Dead'
                     ? 'text-red-400'
                     : 'text-yellow-400';
-            const statusBg =
-                item.status === 'Alive'
-                    ? 'bg-green-400/20'
-                    : item.status === 'Dead'
-                    ? 'bg-red-400/20'
-                    : 'bg-yellow-400/20';
             const icon =
                 item.status === 'Alive'
                     ? 'fa-solid fa-heart-circle-check'
@@ -139,7 +133,6 @@ function getCharacter(url) {
             dialogName.textContent = item.name;
             dialogStatus.innerHTML = `<i class="${icon} pe-2"></i>${item.status}`;
             dialogStatus.className = `text-sm font-adult ${statusColor}`;
-            dialog.className = `${statusBg}`
 
             dialog.showModal();
         });

@@ -43,6 +43,11 @@ h1 {
 }
 
 #display-btn {
+    transition: all 0.3s;
+    color: #111;
+    font-weight: bold;
+    padding: 6px 12px;
+    border-radius: 8px;
     background-color: #7dff77;
 }
 
@@ -67,22 +72,9 @@ h1 {
     animation: fadeInUp 1s ease forwards;
 }
 
-.blue-btn {
-    padding: 6px 12px;
-    border-radius: 8px;
+#display-btn:hover {
     background-color: #00b3da;
-    color: #111;
-    font-weight: bold;
-    transition: all 0.2s;
 }
-.blue-btn:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-}
-.blue-btn:hover:not(:disabled) {
-    background-color: #7dff77;
-}
-
 
 @keyframes portal-pulse {
   0% {
