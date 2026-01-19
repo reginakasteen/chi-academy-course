@@ -47,10 +47,10 @@ data.results.forEach(item => {
 
     app.innerHTML += `
         <div class="relative my-4 mx-5 rounded-2xl overflow-hidden
-                border border-green-400/30
+                border border-green-400/30 bg-black
                 shadow-lg shadow-green-500/20
                 transition transform hover:-translate-y-2
-                fade-in-up hover:shadow-green-500/40" data-id=${item.id}>
+                fade-in-up hover:shadow-red-500/40" data-id=${item.id}>
 
             <div class="absolute inset-0 bg-black/30 backdrop-blur-lg backdrop-saturate-150"></div>
 

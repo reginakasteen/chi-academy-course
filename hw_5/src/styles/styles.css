@@ -1,0 +1,83 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #1e1e2f;
+  margin: 0;
+  padding: 60px 0;
+  color: #f3f4f6;
+  display: flex;
+  justify-content: center;
+}
+
+.wrapper {
+  max-width: 700px;
+  width: 90%;
+  text-align: center;
+}
+
+.wrapper h1 {
+  font-size: 2rem;
+  margin-bottom: 40px;
+  color: #fff;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+}
+
+.counters-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.counter {
+  background: linear-gradient(135deg, #27293d, #3b3e59);
+  padding: 20px 25px;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.counter:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 25px rgba(0,0,0,0.4);
+}
+
+.counter button {
+  border: none;
+  background: #8646e5;
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.1s, background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: box-shadow 0.2s ease-in-out, transform 0.2s, background 0.2s;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2); }
+
+.counter button:hover {
+  box-shadow: 0 10px 30px rgba(144, 0, 255, 0.5), 0 0 10px rgba(144, 0, 255,0.3);
+
+}
+
+.counter button:active {
+  transform: scale(0.85);
+  background: #6835b5;
+}
+
+.counter span {
+  min-width: 50px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 28px;
+  color: #fff;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+
+
