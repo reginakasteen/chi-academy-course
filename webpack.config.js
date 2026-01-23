@@ -11,7 +11,7 @@ module.exports = (env, argv) => {
   return {
     entry: "./src/index.js",
     output: {
-      path: path.resolve(__dirname, "dist"),
+      path: path.resolve(__dirname, "docs"),
       filename: "bundle.[contenthash].js",
       publicPath: "/",
       clean: true,
