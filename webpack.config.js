@@ -51,7 +51,7 @@ module.exports = (env, argv) => {
     devServer: {
       historyApiFallback: true,
       static: {
-        directory: path.resolve(__dirname, "./dist"),
+        directory: path.resolve(__dirname, "./docs"),
       },
       open: true,
       compress: true,
