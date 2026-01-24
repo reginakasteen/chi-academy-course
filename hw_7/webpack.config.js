@@ -9,17 +9,25 @@ module.exports = (env, argv) => {
   const isProduction = argv.mode === "production";
 
   return {
-    entry: "./src/index.js",
+    entry: "./src/index.tsx",
     output: {
       path: path.resolve(__dirname, "dist"),
       filename: "bundle.[contenthash].js",
       publicPath: "/",
       clean: true,
     },
+    resolve: {
+      extensions: [".ts", ".tsx", ".js", ".jsx"],
+    },
     mode: isProduction ? "production" : "development",
     devtool: isProduction ? "source-map" : "eval-source-map",
     module: {
       rules: [
+        {
+          test: /\.(ts|tsx)$/,
+          exclude: /node_modules/,
+          use: 'ts-loader',
+        },
         {
           test: /\.(js|jsx)$/,
           exclude: /node_modules/,
