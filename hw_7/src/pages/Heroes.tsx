@@ -1,20 +1,43 @@
 import React, { useEffect, useState } from "react";
 import { Box, Typography } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridRowParams, GridColDef } from "@mui/x-data-grid";
 import { useNavigate, useParams } from "react-router-dom";
 
-const Heroes = () => {
-  const [characters, setCharacters] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
-  const { id } = useParams();
+type Status = 'Alive' | 'Dead' | 'unknown';
 
-  const [selectedCharacter, setSelectedCharacter] = useState(null);
+interface LocationRef {
+  name: string;
+  url: string;
+}
+
+interface Hero {
+  id: number;
+  name: string;
+  status: Status;
+  species: string;
+  gender: string;
+  image: string;
+  origin: LocationRef;
+  location: LocationRef;
+}
+
+interface CharactersResponse {
+  results: Hero[];
+}
+
+
+const Heroes = () => {
+  const [characters, setCharacters] = useState<Hero[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const navigate = useNavigate();
+  const { id } = useParams<{ id: string }>();
+
+  const [selectedCharacter, setSelectedCharacter] = useState<Hero | null>(null);
 
   useEffect(() => {
     fetch("https://rickandmortyapi.com/api/character")
       .then((res) => res.json())
-      .then((data) => setCharacters(data.results))
+      .then((data: CharactersResponse) => setCharacters(data.results))
       .finally(() => setLoading(false));
   }, []);
 
@@ -22,19 +45,19 @@ const Heroes = () => {
     if (id) {
       fetch(`https://rickandmortyapi.com/api/character/${id}`)
         .then((res) => res.json())
-        .then((data) => setSelectedCharacter(data));
+        .then((data: Hero) => setSelectedCharacter(data));
     } else {
       setSelectedCharacter(null);
     }
   }, [id]);
 
-  const columns = [
+  const columns: GridColDef<Hero>[] = [
     { field: "id", headerName: "ID", width: 70 },
     { field: "name", headerName: "Name", width: 200 },
     { field: "status", headerName: "Status", width: 120 },
   ];
 
-  const handleRowClick = (params) => {
+  const handleRowClick = (params: GridRowParams<Hero>) => {
     navigate(`/heroes/${params.id}`);
   };
 

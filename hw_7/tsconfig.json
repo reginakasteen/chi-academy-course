@@ -4,13 +4,11 @@
     "lib": ["DOM", "DOM.Iterable", "ES2020"],
     "jsx": "react-jsx",
     "module": "ESNext",
-    "moduleResolution": "Node",
-    "ignoreDeprecations": "6.0",
     "strict": true,
     "esModuleInterop": true,
+    "moduleResolution": "bundler",
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
     "allowJs": true
   },
   "include": ["src"]

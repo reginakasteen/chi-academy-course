@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Switch, Typography } from '@mui/material';
-import { useThemeContext } from '../providers/ThemeContextProvider.jsx';
+import { useThemeContext } from '../providers/ThemeContextProvider';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 

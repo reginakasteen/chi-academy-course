@@ -1,7 +1,7 @@
 import { createRoot } from 'react-dom/client';
 import React from 'react';
-import App from './App.jsx';
-import {ThemeContextProvider} from './providers/ThemeContextProvider.jsx';
+import App from './App';
+import {ThemeContextProvider} from './providers/ThemeContextProvider';
 
 
 const root = createRoot(document.getElementById('root') as HTMLElement);

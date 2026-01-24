@@ -1,13 +1,13 @@
 import React, {useState} from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Sidebar from "./components/Sidebar.jsx";
-import Home from "./pages/Home.jsx";
-import About from "./pages/About.jsx";
+import Sidebar from "./components/Sidebar";
+import Home from "./pages/Home";
+import About from "./pages/About";
 import { Box } from "@mui/material";
-import Heroes from "./pages/Heroes.jsx";
-import NoPageFound from "./components/NoPageFound.jsx";
+import Heroes from "./pages/Heroes";
+import NoPageFound from "./components/NoPageFound";
 
-const App = () => {
+const App: React.FC = () => {
 
   return (
     <Router>

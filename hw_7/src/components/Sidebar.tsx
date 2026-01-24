@@ -2,16 +2,16 @@ import { Drawer, Box, Stack, Button, Divider, Typography } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import React from 'react';
 
-import ThemeSwitch from './ThemeSwitch.jsx';
+import ThemeSwitch from './ThemeSwitch';
 
-const drawerWidth = 240;
+const drawerWidth: number = 240;
 
 const Sidebar = () => {
-      const navigate = useNavigate();
+    const navigate = useNavigate();
 
-  const handleHeroesClick = () => {
-    navigate("/heroes");
-  };
+    const handleHeroesClick = () => {
+        navigate("/heroes");
+    };
     return (
         <Drawer
             variant="permanent"
