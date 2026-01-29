@@ -11,7 +11,7 @@ import Wrapper from "./components/Wrapper";
 const App: React.FC = () => {
 
   return (
-    <Router>
+    <Router basename="/chi-academy-course">
       <Box sx={{ display: "flex" }}>
         <Sidebar/>
         <Wrapper>
