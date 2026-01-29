@@ -11,9 +11,9 @@ module.exports = (env, argv) => {
   return {
     entry: "./src/index.tsx",
     output: {
-      path: path.resolve(__dirname, "dist"),
+      path: path.resolve(__dirname, "docs"),
       filename: "bundle.[contenthash].js",
-      publicPath: "/",
+      publicPath: "/chi-academy-course/",
       clean: true,
     },
     resolve: {
@@ -59,7 +59,7 @@ module.exports = (env, argv) => {
     devServer: {
       historyApiFallback: true,
       static: {
-        directory: path.resolve(__dirname, "./dist"),
+        directory: path.resolve(__dirname, "./docs"),
       },
       open: true,
       compress: true,
