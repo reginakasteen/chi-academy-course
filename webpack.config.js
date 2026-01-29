@@ -13,7 +13,7 @@ module.exports = (env, argv) => {
     output: {
       path: path.resolve(__dirname, "docs"),
       filename: "bundle.[contenthash].js",
-      publicPath: "./",
+      publicPath: isProduction ? "/chi-academy-course/" : "/",
       clean: true,
     },
     resolve: {
