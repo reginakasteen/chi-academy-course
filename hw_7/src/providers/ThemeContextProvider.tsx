@@ -4,16 +4,8 @@ import React, {ReactNode} from 'react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
-type ThemeMode = "light" | "dark";
+import { ThemeContextProviderProps, ThemeMode, ThemeContextType } from '../types/theme';
 
-interface ThemeContextType {
-  mode: ThemeMode;
-  toggleTheme: () => void;
-}
-
-type ThemeContextProviderProps = {
-  children: ReactNode;
-};
 
 const ThemeContext = createContext<ThemeContextType | null>(null);
 

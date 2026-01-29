@@ -6,6 +6,7 @@ import About from "./pages/About";
 import { Box } from "@mui/material";
 import Heroes from "./pages/Heroes";
 import NoPageFound from "./components/NoPageFound";
+import Wrapper from "./components/Wrapper";
 
 const App: React.FC = () => {
 
@@ -13,7 +14,7 @@ const App: React.FC = () => {
     <Router>
       <Box sx={{ display: "flex" }}>
         <Sidebar/>
-        <Box>
+        <Wrapper>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
@@ -21,7 +22,7 @@ const App: React.FC = () => {
             <Route path="/heroes/:id" element={<Heroes />} />
             <Route path="*" element={<NoPageFound />} />
           </Routes>
-        </Box>
+        </Wrapper>
       </Box>
     </Router>
   );

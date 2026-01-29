@@ -1,5 +1,5 @@
 {
-  "name": "hw_5",
+  "name": "hw_7",
   "version": "1.0.0",
   "description": "homework #5 app",
   "main": "index.js",
@@ -51,6 +51,7 @@
     "@mui/material": "^7.3.7",
     "@mui/styled-engine-sc": "^7.3.7",
     "@mui/x-data-grid": "^8.25.0",
+    "ahooks": "^3.9.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router": "^7.12.0",

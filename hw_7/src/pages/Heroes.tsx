@@ -1,55 +1,28 @@
+
 import React, { useEffect, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import { DataGrid, GridRowParams, GridColDef } from "@mui/x-data-grid";
 import { useNavigate, useParams } from "react-router-dom";
+import { useRequest } from "ahooks";
 
-type Status = 'Alive' | 'Dead' | 'unknown';
-
-interface LocationRef {
-  name: string;
-  url: string;
-}
-
-interface Hero {
-  id: number;
-  name: string;
-  status: Status;
-  species: string;
-  gender: string;
-  image: string;
-  origin: LocationRef;
-  location: LocationRef;
-}
-
-interface CharactersResponse {
-  results: Hero[];
-}
+import { getCharacters, getCharacterById } from "../api/characters";
+import { Hero } from "../types/heroes";
 
 
 const Heroes = () => {
-  const [characters, setCharacters] = useState<Hero[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
 
-  const [selectedCharacter, setSelectedCharacter] = useState<Hero | null>(null);
+  const { data: characters = [], loading } = useRequest<Hero[], []>(getCharacters);
+  const { data: selectedCharacter, loading: loadingCharacter } = useRequest<Hero, [string]>(
+  () => getCharacterById(id!),
+  {
+    ready: !!id,
+    refreshDeps: [id],
+  }
+);
 
-  useEffect(() => {
-    fetch("https://rickandmortyapi.com/api/character")
-      .then((res) => res.json())
-      .then((data: CharactersResponse) => setCharacters(data.results))
-      .finally(() => setLoading(false));
-  }, []);
-
-  useEffect(() => {
-    if (id) {
-      fetch(`https://rickandmortyapi.com/api/character/${id}`)
-        .then((res) => res.json())
-        .then((data: Hero) => setSelectedCharacter(data));
-    } else {
-      setSelectedCharacter(null);
-    }
-  }, [id]);
 
   const columns: GridColDef<Hero>[] = [
     { field: "id", headerName: "ID", width: 70 },
@@ -62,8 +35,14 @@ const Heroes = () => {
   };
 
   return (
-    <Box sx={{ display: "flex", flex: 1 }}>
-      <Box sx={{ flex: 1, p: 2 }}>
+    <Box  sx={{
+      display: "flex",
+      flexDirection: "row",
+      borderColor: "divider",
+      width: "100%",       
+      minHeight: "100vh" 
+    }}>
+      <Box sx={{ p: 2 }}>
         <DataGrid
           rows={characters}
           columns={columns}
@@ -80,16 +59,16 @@ const Heroes = () => {
             flex: 1,
             p: 2,
             borderLeft: 1,
-            borderColor: "divider",
             display: "flex",
-            flexDirection: "row",
-            alignItems: "start",
-          }}
-        >
+            flexDirection: "column",
+            borderColor: "divider",
+            justifyContent: "center",
+            alignItems: "center",
+          }}>
           <img
             src={selectedCharacter.image}
             alt={selectedCharacter.name}
-            style={{ width: "100%", borderRadius: 8 }}
+            style={{ width: "50%", borderRadius: 8 }}
           />
           <Box
             sx={{
