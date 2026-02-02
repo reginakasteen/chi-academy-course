@@ -1,4 +1,3 @@
-// pages/StripePage.tsx
 import { Box, CircularProgress } from "@mui/material";
 import { useRequest } from "ahooks";
 import { getAllPosts } from "../api/exhibitActions";
