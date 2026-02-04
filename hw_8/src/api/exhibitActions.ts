@@ -19,10 +19,19 @@ export const getPostById = async (id: number): Promise<Post> => {
   return response.data;
 };
 
-export const createPost = async (data: Partial<Post>): Promise<Post> => {
-  const response = await axiosInstance.post('/api/exhibits', data);
+export const createPost = async (data: { description: string; image: File | null }) => {
+  const formData = new FormData();
+  if (data.image) formData.append("image", data.image);
+  formData.append("description", data.description);
+
+  const response = await axiosInstance.post("/api/exhibits", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
   return response.data;
 };
+
 
 export const deletePost = async (id: number): Promise<Post> => {
   const response = await axiosInstance.delete(`/api/exhibits/${id}`);

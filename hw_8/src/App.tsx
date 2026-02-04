@@ -5,7 +5,7 @@ import StripePage from './pages/StripePage'
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import PostPage from './pages/PostPage';
-import NewPost from './pages/NewPost';
+import NewPost from './pages/CreatePostPage';
 import ModalLayout from './layouts/ModalLayout';
 import HomePage from './pages/HomePage';
 import { store } from './store/store';

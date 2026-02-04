@@ -1,4 +1,4 @@
-import NewPost from "../pages/NewPost";
+import NewPost from "../pages/CreatePostPage";
 import { Outlet, useLocation } from "react-router-dom";
 
 const ModalLayout = () => {

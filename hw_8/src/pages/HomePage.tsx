@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useRequest } from "ahooks";
 import { getMyPosts } from "../api/exhibitActions";
 import Stripe from "../components/Stripe";
-import LoadingPage from "../components/LoadingPage";
+import LoadingPage from "./LoadingPage";
 import { Typography } from "@mui/material";
 
 const HomePage = () => {
