@@ -1,19 +1,28 @@
-import { Box, CircularProgress } from "@mui/material";
+import { useState } from "react";
 import { useRequest } from "ahooks";
 import { getAllPosts } from "../api/exhibitActions";
-import Post from "../components/Post";
-import type { Post as PostType } from "../types/types";
+import Stripe from "../components/Stripe";
+import LoadingPage from "../components/LoadingPage";
 
 const StripePage = () => {
-  const { data: posts = [], loading } = useRequest<PostType[], []>(getAllPosts);
+  const [page, setPage] = useState(1);
+
+  const { data, loading } = useRequest(
+    () => getAllPosts({ page, limit: 10 }),
+    {
+      refreshDeps: [page],
+    }
+  );
+
+  if (loading || !data) return <LoadingPage />;
 
   return (
-    <Box sx={{ p: 2, maxWidth: 800, mx: "auto" }}>
-      {loading && <CircularProgress />}
-      {posts.map((post) => (
-        <Post key={post.id} post={post} />
-      ))}
-    </Box>
+    <Stripe
+      posts={data.posts}
+      page={data.page}
+      lastPage={data.lastPage}
+      onPageChange={setPage}
+    />
   );
 };
 

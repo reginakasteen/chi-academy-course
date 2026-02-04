@@ -3,10 +3,16 @@ import type { Post } from "../types/types";
 
 
 
-export const getAllPosts = async (): Promise<Post[]> => {
-  const response = await axiosInstance.get('/api/exhibits');
-  return response.data.data || [];
+export const getAllPosts = async (params: { page: number; limit: number }) => {
+  const response = await axiosInstance.get("/api/exhibits", { params });
+  return {
+    posts: response.data.data,      
+    total: response.data.total,    
+    page: Number(response.data.page),
+    lastPage: Number(response.data.lastPage)
+  };
 };
+
 
 export const getPostById = async (id: number): Promise<Post> => {
   const response = await axiosInstance.get(`/api/exhibits/${id}`);
@@ -23,7 +29,18 @@ export const deletePost = async (id: number): Promise<Post> => {
   return response.data;
 };
 
-export const updatePost = async (id: number, data: Partial<Post>): Promise<Post> => {
-  const response = await axiosInstance.put(`/api/exhibits/${id}`, data);
-  return response.data;
+// export const updatePost = async (id: number, data: Partial<Post>): Promise<Post> => {
+//   const response = await axiosInstance.put(`/api/exhibits/${id}`, data);
+//   return response.data;
+// };
+
+
+export const getMyPosts = async (params: { page: number; limit: number }) => {
+  const response = await axiosInstance.get("/api/exhibits/my-posts", { params });
+  return {
+    posts: response.data.data,      
+    total: response.data.total,    
+    page: Number(response.data.page),
+    lastPage: Number(response.data.lastPage)
+  };
 };

@@ -12,6 +12,18 @@ export interface Post {
   createdAt: string;
 }
 
+export interface Comment {
+  id: number;
+  user: User;
+  text: string;
+  createdAt: string;
+}
+
+
+export interface RegisterData {
+  username: string;
+  password: string;
+}
 
 export interface UserState {
     id: number | null,
