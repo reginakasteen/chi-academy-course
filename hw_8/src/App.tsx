@@ -21,12 +21,14 @@ function App() {
         <Navbar/>
         <Routes>
           <Route index element={<StripePage />}/>
+          <Route path="post/:id" element={<PostPage />} />
+
+          <Route path='post' element={<PostPage/>}/>
           <Route element={<PublicRoute/>}>
             <Route path='login' element={<LoginPage/>}/>
             <Route path='register' element={<RegisterPage/>}/>
           </Route>
           <Route element={<ProtectedRoute/>}>
-            <Route path='post' element={<PostPage/>}/>
             <Route path='home' element={<HomePage/>}/>
             <Route element={<ModalLayout />}>
               <Route path="new-post" element={<NewPost />} />

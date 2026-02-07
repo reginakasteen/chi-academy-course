@@ -1,8 +1,6 @@
 import axiosInstance from "./axiosInstance";
 import type { Post } from "../types/types";
 
-
-
 export const getAllPosts = async (params: { page: number; limit: number }) => {
   const response = await axiosInstance.get("/api/exhibits", { params });
   return {
@@ -13,9 +11,8 @@ export const getAllPosts = async (params: { page: number; limit: number }) => {
   };
 };
 
-
 export const getPostById = async (id: number): Promise<Post> => {
-  const response = await axiosInstance.get(`/api/exhibits/${id}`);
+  const response = await axiosInstance.get(`/api/exhibits/post/${id}`);
   return response.data;
 };
 
@@ -32,17 +29,10 @@ export const createPost = async (data: { description: string; image: File | null
   return response.data;
 };
 
-
 export const deletePost = async (id: number): Promise<Post> => {
   const response = await axiosInstance.delete(`/api/exhibits/${id}`);
   return response.data;
 };
-
-// export const updatePost = async (id: number, data: Partial<Post>): Promise<Post> => {
-//   const response = await axiosInstance.put(`/api/exhibits/${id}`, data);
-//   return response.data;
-// };
-
 
 export const getMyPosts = async (params: { page: number; limit: number }) => {
   const response = await axiosInstance.get("/api/exhibits/my-posts", { params });
@@ -52,4 +42,9 @@ export const getMyPosts = async (params: { page: number; limit: number }) => {
     page: Number(response.data.page),
     lastPage: Number(response.data.lastPage)
   };
+};
+
+export const getStatic = async (filename: string) => {
+  const response = await axiosInstance.get(`/api/exhibits/static/${filename}`);
+  return response.data;
 };

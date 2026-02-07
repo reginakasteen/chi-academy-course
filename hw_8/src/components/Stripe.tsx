@@ -1,19 +1,24 @@
 import { Box, Pagination } from "@mui/material";
-import Post from "./Post";
 import type { Post as PostType } from "../types/types";
+import PostCard from "./PostCard";
 
 interface StripeProps {
   posts: PostType[];
   page: number;
   lastPage: number;
   onPageChange: (page: number) => void;
+  onDeletePost?: (id: number) => void;
 }
 
-const Stripe = ({ posts, page, lastPage, onPageChange }: StripeProps) => {
+const Stripe = ({ posts, page, lastPage, onPageChange, onDeletePost }: StripeProps) => {
   return (
     <Box sx={{ p: 2, maxWidth: 800, mx: "auto" }}>
       {posts.map((post) => (
-        <Post key={post.id} post={post} />
+        <PostCard
+          key={post.id}
+          post={post}
+          onDelete={onDeletePost} 
+        />
       ))}
 
       {lastPage > 1 && (

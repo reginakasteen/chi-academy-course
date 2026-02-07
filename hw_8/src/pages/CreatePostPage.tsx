@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import NewPost from "./NewPost";
+import NewPost from "../components/NewPost";
 import NewPostForm from "../components/NewPostForm";
 import { createPost } from "../api/exhibitActions";
 

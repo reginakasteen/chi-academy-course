@@ -18,6 +18,7 @@ export const loginUser = createAsyncThunk<
     };
 
     localStorage.setItem("token", data.token || "");
+    localStorage.setItem("userId", String(data.id));
 
     return data;
   } catch (error: any) {
@@ -40,13 +41,17 @@ export const registerUser = createAsyncThunk<
     return thunkAPI.rejectWithValue(error.response?.data?.message || "Registration failed");
   }
 });
+
+
 const tokenFromStorage = localStorage.getItem("token");
+const userIdFromStorage = localStorage.getItem("userId");
 
 const userSlice = createSlice({
   name: "user",
   initialState: {
     ...initialState,
-    token: tokenFromStorage || null, // берём токен из localStorage
+    token: tokenFromStorage || null,
+    id: userIdFromStorage ? Number(userIdFromStorage) : null,
   },
   reducers: {
     clearUser(state) {
@@ -54,6 +59,7 @@ const userSlice = createSlice({
       state.name = null;
       state.token = null;
       localStorage.removeItem("token");
+      localStorage.removeItem("userId");
     },
   },
   extraReducers: (builder) => {
