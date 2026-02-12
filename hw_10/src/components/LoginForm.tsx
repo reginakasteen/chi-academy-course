@@ -1,24 +1,25 @@
 import { Box, Button, TextField, Typography, Alert } from "@mui/material";
 import { Formik, Form, ErrorMessage } from "formik";
-import { RegisterSchema } from "../schemas/RegisterSchema";
 import { toFormikValidationSchema } from "zod-formik-adapter";
+import { loginSchema } from "../schemas/LoginSchema";
+import type { LoginSchema } from "../schemas/LoginSchema";
 
-interface RegisterFormProps {
-  onSubmit: (data: RegisterSchema) => void;
+interface LoginFormProps {
+  onSubmit: (data: LoginSchema) => void;
   error?: string | null;
 }
 
-const RegisterForm = ({ onSubmit, error }: RegisterFormProps) => {
+const LoginForm = ({ onSubmit, error }: LoginFormProps) => {
   return (
     <Formik
       initialValues={{ username: "", password: "" }}
-      validationSchema={toFormikValidationSchema(RegisterSchema)}
+      validationSchema={toFormikValidationSchema(loginSchema)}
       onSubmit={(values, { setSubmitting }) => {
         onSubmit(values);
         setSubmitting(false);
       }}
     >
-      {({ values, handleChange, handleBlur, errors, touched, isSubmitting }) => (
+      {({ values, handleChange, handleBlur, isSubmitting }) => (
         <Form>
           <Box
             sx={{
@@ -31,7 +32,7 @@ const RegisterForm = ({ onSubmit, error }: RegisterFormProps) => {
             }}
           >
             <Typography variant="h5" textAlign="center">
-              Register
+              Login
             </Typography>
 
             {error && <Alert severity="error">{error}</Alert>}
@@ -42,7 +43,7 @@ const RegisterForm = ({ onSubmit, error }: RegisterFormProps) => {
               value={values.username}
               onChange={handleChange}
               onBlur={handleBlur}
-              error={touched.username && Boolean(errors.username)}
+              error={Boolean(values.username.length < 4)}
               helperText={<ErrorMessage name="username" />}
             />
 
@@ -53,7 +54,7 @@ const RegisterForm = ({ onSubmit, error }: RegisterFormProps) => {
               value={values.password}
               onChange={handleChange}
               onBlur={handleBlur}
-              error={touched.password && Boolean(errors.password)}
+              error={Boolean(values.password.length < 4)}
               helperText={<ErrorMessage name="password" />}
             />
 
@@ -63,7 +64,7 @@ const RegisterForm = ({ onSubmit, error }: RegisterFormProps) => {
               color="primary"
               disabled={isSubmitting}
             >
-              Register
+              Login
             </Button>
           </Box>
         </Form>
@@ -72,4 +73,4 @@ const RegisterForm = ({ onSubmit, error }: RegisterFormProps) => {
   );
 };
 
-export default RegisterForm;
+export default LoginForm;
