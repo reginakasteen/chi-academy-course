@@ -1,5 +1,5 @@
 import { Box, Button, TextField, Typography, Alert } from "@mui/material";
-import { Formik, Form, ErrorMessage } from "formik";
+import { Formik, Form } from "formik";
 import { toFormikValidationSchema } from "zod-formik-adapter";
 import { loginSchema } from "../schemas/LoginSchema";
 import type { LoginSchema } from "../schemas/LoginSchema";
@@ -14,12 +14,14 @@ const LoginForm = ({ onSubmit, error }: LoginFormProps) => {
     <Formik
       initialValues={{ username: "", password: "" }}
       validationSchema={toFormikValidationSchema(loginSchema)}
+      validateOnChange={false}
+      validateOnBlur={true}
       onSubmit={(values, { setSubmitting }) => {
         onSubmit(values);
         setSubmitting(false);
       }}
     >
-      {({ values, handleChange, handleBlur, isSubmitting }) => (
+      {({ values, handleChange, handleBlur, isSubmitting, touched, errors  }) => (
         <Form>
           <Box
             sx={{
@@ -43,9 +45,10 @@ const LoginForm = ({ onSubmit, error }: LoginFormProps) => {
               value={values.username}
               onChange={handleChange}
               onBlur={handleBlur}
-              error={Boolean(values.username.length < 4)}
-              helperText={<ErrorMessage name="username" />}
+              error={Boolean(touched.username && errors.username)}
+              helperText={touched.username && errors.username}
             />
+
 
             <TextField
               label="Password"
@@ -54,9 +57,10 @@ const LoginForm = ({ onSubmit, error }: LoginFormProps) => {
               value={values.password}
               onChange={handleChange}
               onBlur={handleBlur}
-              error={Boolean(values.password.length < 4)}
-              helperText={<ErrorMessage name="password" />}
+              error={Boolean(touched.password && errors.password)}
+              helperText={touched.password && errors.password}
             />
+
 
             <Button
               type="submit"
