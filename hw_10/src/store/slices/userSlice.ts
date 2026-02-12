@@ -15,6 +15,8 @@ export const loginUser = createAsyncThunk<
       id: response.data.userId,
       name: response.data.userName,
       token: response.data.access_token,
+      loading: true,
+      error: null,
     };
 
     localStorage.setItem("token", data.token || "");
@@ -58,29 +60,56 @@ const userSlice = createSlice({
       state.id = null;
       state.name = null;
       state.token = null;
+      state.error = null;
+      state.loading = false;
+
       localStorage.removeItem("token");
       localStorage.removeItem("userId");
     },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(loginUser.fulfilled, (state, action: PayloadAction<UserState>) => {
-        state.id = action.payload.id;
-        state.name = action.payload.name;
-        state.token = action.payload.token;
+      .addCase(loginUser.pending, (state) => {
+        state.loading = true;
+        state.error = null;
       })
-      .addCase(loginUser.rejected, (state) => {
+      .addCase(
+        loginUser.fulfilled,
+        (state, action: PayloadAction<UserState>) => {
+          state.loading = false;
+          state.id = action.payload.id;
+          state.name = action.payload.name;
+          state.token = action.payload.token;
+          state.error = null;
+        }
+      )
+      .addCase(loginUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload || "Login failed";
         state.id = null;
         state.name = null;
         state.token = null;
+
         localStorage.removeItem("token");
       })
-      .addCase(registerUser.fulfilled, (state, action: PayloadAction<{ username: string; userId?: number }>) => {
-        state.id = action.payload.userId || null;
-        state.name = action.payload.username;
-        state.token = null;
+
+      .addCase(registerUser.pending, (state) => {
+        state.loading = true;
+        state.error = null;
       })
-      .addCase(registerUser.rejected, (state) => {
+      .addCase(
+        registerUser.fulfilled,
+        (state, action: PayloadAction<{ username: string; userId?: number }>) => {
+          state.loading = false;
+          state.id = action.payload.userId || null;
+          state.name = action.payload.username;
+          state.token = null;
+          state.error = null;
+        }
+      )
+      .addCase(registerUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload || "Registration failed";
         state.id = null;
         state.name = null;
         state.token = null;

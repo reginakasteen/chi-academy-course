@@ -21,15 +21,20 @@ export interface Comment {
 
 
 export interface UserState {
-    id: number | null,
-    name: string | null,
-    token: string | null,
+  id: number | null;
+  name: string | null;
+  token: string | null;
+  loading: boolean | null;
+  error: string | null;
 }
 
 export const initialState: UserState = {
   id: null,
   name: null,
   token: null,
+  loading: null,
+  error: null,
+
 };
 
 
