@@ -44,3 +44,9 @@ export interface Notification {
   user: string;
   message: string;
 }
+
+export interface PostsResponse {
+  posts: Post[];
+  page: number;
+  lastPage: number;
+}
