@@ -16,7 +16,7 @@ export default function RegisterPage() {
   const handleRegister = async (data: { username: string; password: string }) => {
     try {
       await dispatch(registerUser(data)).unwrap();
-      router.push("/login");
+      router.push("/auth/login");
     } catch (err: any) {
       alert(err || "Registration failed");
     }
