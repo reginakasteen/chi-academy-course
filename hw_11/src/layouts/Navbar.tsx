@@ -2,16 +2,14 @@
 
 import { AppBar, Toolbar, Typography, Button } from "@mui/material";
 import Link from "next/link";
-import Cookies from "js-cookie";
-
 import { useRouter } from "next/navigation";
-import { useDispatch } from "react-redux";
-import type { AppDispatch } from "../store/store";
+import { useDispatch, useSelector } from "react-redux";
+import type { RootState, AppDispatch } from "../store/store";
 import { clearUser } from "../store/slices/userSlice";
 import NewPostButton from "../components/NewPostButton";
 
 export default function Navbar() {
-  const token = Cookies.get("token");
+  const token = useSelector((state: RootState) => state.user.token);
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
 
